@@ -2,85 +2,82 @@
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <title>Gems Quiz — Rash</title>
 <style>
   :root{
     --gold:#d4af37; --gold-light:#f0d879; --bg1:#0d0b1e; --bg2:#1a1333;
-    --card:rgba(255,255,255,.06); --green:#22c55e; --red:#ef4444;
+    --card:rgba(255,255,255,.07); --green:#22c55e; --red:#ef4444;
   }
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
+  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif;-webkit-tap-highlight-color:transparent}
   body{
     min-height:100vh; background:linear-gradient(135deg,var(--bg1),var(--bg2));
-    display:flex; align-items:center; justify-content:center; padding:20px; color:#fff;
+    display:flex; align-items:center; justify-content:center; padding:12px; color:#fff;
+    overflow-x:hidden;
   }
   .container{
-    width:100%; max-width:640px; background:var(--card); backdrop-filter:blur(14px);
-    border:1px solid rgba(212,175,55,.35); border-radius:24px; padding:36px 30px;
-    box-shadow:0 25px 60px rgba(0,0,0,.5); text-align:center;
+    width:100%; max-width:100%; background:var(--card); backdrop-filter:blur(14px);
+    -webkit-backdrop-filter:blur(14px);
+    border:1px solid rgba(212,175,55,.35); border-radius:20px; padding:20px 16px;
+    box-shadow:0 15px 35px rgba(0,0,0,.5); text-align:center;
   }
-  h1{font-size:2rem; background:linear-gradient(90deg,var(--gold),var(--gold-light));
-    -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:6px}
-  .subtitle{color:#b9b3d6; font-size:1rem; margin-bottom:24px}
+  h1{font-size:1.6rem; background:linear-gradient(90deg,var(--gold),var(--gold-light));
+    -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:4px}
+  .subtitle{color:#b9b3d6; font-size:0.9rem; margin-bottom:18px}
   .hidden{display:none !important}
 
-  .stats{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; gap:10px; flex-wrap:wrap}
+  .stats{display:flex; justify-content:space-between; align-items:center; margin-bottom:16px; gap:8px; flex-wrap:wrap}
   .stat{
     background:rgba(0,0,0,.35); border:1px solid rgba(212,175,55,.25);
-    border-radius:14px; padding:10px 16px; font-weight:bold; font-size:1.05rem;
+    border-radius:12px; padding:8px 12px; font-weight:bold; font-size:0.95rem;
   }
   .gems{color:var(--gold-light)} .gems::before{content:"💎 "}
   .qcount{color:#c7c2e8}
 
-  .timer-wrap{width:110px;height:110px;margin:0 auto 24px;position:relative}
-  .timer-wrap svg{transform:rotate(-90deg)}
+  .timer-wrap{width:90px;height:90px;margin:0 auto 16px;position:relative}
+  .timer-wrap svg{transform:rotate(-90deg); width:90px; height:90px;}
   .timer-bg{stroke:rgba(255,255,255,.1)}
   .timer-fg{stroke:var(--gold); stroke-linecap:round; transition:stroke-dashoffset 1s linear, stroke .4s}
   .timer-num{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-size:2rem; font-weight:800; color:var(--gold-light);}
+    font-size:1.6rem; font-weight:800; color:var(--gold-light);}
   .timer-num.danger{color:var(--red); animation:pulse .5s infinite alternate}
   @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.15)}}
 
-  .cat-badge{display:inline-block; font-size:.8rem; background:rgba(212,175,55,.18);
-    border:1px solid var(--gold); color:var(--gold-light); border-radius:20px; padding:4px 16px; margin-bottom:14px;}
-  .question{font-size:1.35rem; font-weight:700; margin-bottom:26px; line-height:1.7; min-height:70px}
+  .cat-badge{display:inline-block; font-size:0.75rem; background:rgba(212,175,55,.18);
+    border:1px solid var(--gold); color:var(--gold-light); border-radius:20px; padding:3px 12px; margin-bottom:10px;}
+  .question{font-size:1.15rem; font-weight:700; margin-bottom:18px; line-height:1.6; min-height:60px}
 
-  .answers{display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:20px}
-  @media(max-width:520px){.answers{grid-template-columns:1fr}}
+  .answers{display:grid; grid-template-columns:1fr; gap:10px; margin-bottom:16px}
   .answer{background:rgba(255,255,255,.07); border:2px solid rgba(255,255,255,.12);
-    border-radius:14px; padding:15px 12px; font-size:1.05rem; color:#fff; cursor:pointer; transition:.25s; font-weight:600;}
-  .answer:hover:not(:disabled){border-color:var(--gold); background:rgba(212,175,55,.12); transform:translateY(-2px)}
-  .answer:disabled{cursor:default}
+    border-radius:12px; padding:12px; font-size:1rem; color:#fff; cursor:pointer; transition:.25s; font-weight:600; text-align:center;}
+  .answer:active{transform:scale(0.98)}
   .answer.correct{background:rgba(34,197,94,.25); border-color:var(--green); animation:pop .4s}
   .answer.wrong{background:rgba(239,68,68,.25); border-color:var(--red); animation:shake .4s}
-  @keyframes pop{50%{transform:scale(1.05)}}
-  @keyframes shake{25%{transform:translateX(6px)}75%{transform:translateX(-6px)}}
+  @keyframes pop{50%{transform:scale(1.03)}}
+  @keyframes shake{25%{transform:translateX(5px)}75%{transform:translateX(-5px)}}
 
   .solve-btn{background:linear-gradient(90deg,#7c3aed,#a855f7); border:none; color:#fff;
-    font-size:1rem; font-weight:700; padding:12px 26px; border-radius:30px; cursor:pointer;
-    transition:.25s; box-shadow:0 6px 20px rgba(168,85,247,.35);}
-  .solve-btn:hover:not(:disabled){transform:translateY(-2px); box-shadow:0 10px 28px rgba(168,85,247,.5)}
+    font-size:0.95rem; font-weight:700; padding:10px 20px; border-radius:25px; cursor:pointer;
+    transition:.25s; box-shadow:0 4px 15px rgba(168,85,247,.35); width: 100%;}
   .solve-btn:disabled{opacity:.4; cursor:not-allowed}
-  .solve-cost{font-size:.8rem; color:#d8b4fe; display:block; margin-top:4px}
+  .solve-cost{font-size:0.75rem; color:#d8b4fe; display:block; margin-top:2px}
 
-  .msg{min-height:26px; font-weight:700; margin-top:10px}
+  .msg{min-height:24px; font-weight:700; margin-top:8px; font-size:0.95rem}
   .msg.good{color:var(--green)} .msg.bad{color:var(--red)} .msg.info{color:var(--gold-light)}
 
   .big-btn{background:linear-gradient(90deg,var(--gold),#b8860b); color:#1a1200; border:none;
-    font-size:1.2rem; font-weight:800; padding:16px 50px; border-radius:40px; cursor:pointer; transition:.25s; margin-top:18px;}
-  .big-btn:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(212,175,55,.4)}
+    font-size:1.05rem; font-weight:800; padding:14px 30px; border-radius:30px; cursor:pointer; transition:.25s; margin-top:14px; width: 100%;}
   .resume-btn{background:linear-gradient(90deg,#16a34a,#22c55e); color:#fff; border:none;
-    font-size:1.1rem; font-weight:800; padding:14px 44px; border-radius:40px; cursor:pointer; transition:.25s; margin:10px 6px 0;}
-  .resume-btn:hover{transform:translateY(-3px); box-shadow:0 12px 30px rgba(34,197,94,.4)}
-  .rules{text-align:right; background:rgba(0,0,0,.3); border-radius:14px; padding:16px 20px; margin:20px 0; line-height:2; color:#cfc9ea; font-size:.95rem}
-  .final-gems{font-size:3.2rem; color:var(--gold-light); font-weight:800; margin:14px 0}
+    font-size:1rem; font-weight:800; padding:12px 20px; border-radius:30px; cursor:pointer; transition:.25s; margin:8px 0; width: 100%;}
+  .rules{text-align:right; background:rgba(0,0,0,.3); border-radius:12px; padding:12px 14px; margin:14px 0; line-height:1.8; color:#cfc9ea; font-size:0.85rem}
+  .final-gems{font-size:2.8rem; color:var(--gold-light); font-weight:800; margin:10px 0}
   .final-gems::before{content:"💎 "}
-  input[type=text]{width:100%; padding:14px 18px; border-radius:14px; border:2px solid rgba(212,175,55,.3);
-    background:rgba(0,0,0,.35); color:#fff; font-size:1.05rem; margin-top:10px; outline:none;}
+  input[type=text]{width:100%; padding:12px 14px; border-radius:12px; border:2px solid rgba(212,175,55,.3);
+    background:rgba(0,0,0,.35); color:#fff; font-size:1rem; margin-top:6px; outline:none;}
   input[type=text]:focus{border-color:var(--gold)}
-  footer{margin-top:30px; font-size:.8rem; color:#8f88b8; letter-spacing:.5px; direction:ltr}
+  footer{margin-top:20px; font-size:0.75rem; color:#8f88b8; letter-spacing:.5px; direction:ltr}
   .resume-note{background:rgba(34,197,94,.12); border:1px solid rgba(34,197,94,.4); color:#86efac;
-    border-radius:14px; padding:12px; margin-top:14px; font-size:.95rem;}
+    border-radius:12px; padding:10px; margin-top:10px; font-size:0.85rem;}
 </style>
 </head>
 <body>
@@ -89,21 +86,20 @@
   <!-- START SCREEN -->
   <div id="startScreen">
     <h1>💎 Gems Quiz</h1>
-    <p class="subtitle">مسابقة الجواهر — أسئلة كنسية أرثوذكسية وأسئلة عامة</p>
+    <p class="subtitle">مسابقة الجواهر — أسئلة كنسية وعامة</p>
     <div id="resumeBox" class="hidden">
-      <div class="resume-note">🔄 لقينا جلسة سابقة يا <b id="resumeName"></b>! كنت واقف عند السؤال <b id="resumeQ"></b> ومعاك <b id="resumeGems"></b> 💎</div>
+      <div class="resume-note">🔄 لقينا جلسة سابقة يا <b id="resumeName"></b>! كنت عند السؤال <b id="resumeQ"></b> ومعاك <b id="resumeGems"></b> 💎</div>
       <button class="resume-btn" onclick="resumeGame()">▶️ استكمل من حيث وقفت</button>
-      <button class="big-btn" style="font-size:1rem;padding:14px 30px" onclick="startFresh()">🔄 ابدأ من الأول</button>
       <br><br>
     </div>
     <div id="freshBox">
       <input type="text" id="playerName" placeholder="✍️ اكتب اسمك هنا..." maxlength="25">
       <div class="rules">
         📜 <b>القوانين:</b><br>
-        ⏱️ لكل سؤال <b>20 ثانية</b> بس<br>
+        ⏱️ لكل سؤال <b>20 ثانية</b><br>
         ✅ الإجابة الصح = <b style="color:var(--gold-light)">+10 جواهر 💎</b><br>
-        ⚡ زرار <b>"Solve Fast"</b> بيحل السؤال لوحده بس بيكلفك <b style="color:#d8b4fe">-100 جواهر</b><br>
-        💾 تقدمك بيتحفظ تلقائيًا — لو قفلت الصفحة هترجع لنفس السؤال
+        ⚡ زرار <b>"Solve Fast"</b> بيحل لوحده ويكلفك <b style="color:#d8b4fe">-100 جوهرة</b><br>
+        💾 تقدمك بيتحفظ تلقائياً لو قفلت الصفحة
       </div>
       <button class="big-btn" onclick="startGame()">ابدأ اللعب 🚀</button>
     </div>
@@ -116,9 +112,9 @@
       <div class="stat qcount">سؤال <span id="qNum">1</span>/40</div>
     </div>
     <div class="timer-wrap">
-      <svg width="110" height="110">
-        <circle class="timer-bg" cx="55" cy="55" r="48" fill="none" stroke-width="8"/>
-        <circle class="timer-fg" id="timerFg" cx="55" cy="55" r="48" fill="none" stroke-width="8"/>
+      <svg width="90" height="90">
+        <circle class="timer-bg" cx="45" cy="45" r="38" fill="none" stroke-width="6"/>
+        <circle class="timer-fg" id="timerFg" cx="45" cy="45" r="38" fill="none" stroke-width="6"/>
       </svg>
       <div class="timer-num" id="timerNum">20</div>
     </div>
@@ -191,16 +187,14 @@ const QUESTIONS = [
 const SAVE_KEY = 'gemsQuizSave';
 let current=0, gems=0, timer=null, timeLeft=20, locked=false, player="", resumeTime=20;
 
-const RING = 2*Math.PI*48;
+const RING = 2 * Math.PI * 38;
 const shuffle = arr => arr.map(v=>[Math.random(),v]).sort((a,b)=>a[0]-b[0]).map(p=>p[1]);
 let ORDER = QUESTIONS.map((_,i)=>i);
 
-/* ===== الحفظ التلقائي ===== */
 function saveState(){
   localStorage.setItem(SAVE_KEY, JSON.stringify({current, gems, player, timeLeft}));
 }
 
-/* عند فتح الصفحة: هل في جلسة محفوظة؟ */
 window.onload = () => {
   const saved = JSON.parse(localStorage.getItem(SAVE_KEY) || 'null');
   if(saved && saved.current > 0 && saved.current < QUESTIONS.length){
@@ -216,16 +210,10 @@ window.onload = () => {
 function resumeGame(){
   const s = window._saved;
   player=s.player; current=s.current; gems=s.gems; resumeTime=s.timeLeft;
-  ORDER = shuffle(QUESTIONS.map((_,i)=>i));
   document.getElementById('startScreen').classList.add('hidden');
   document.getElementById('quizScreen').classList.remove('hidden');
+  updateGems(); // إظهار الجواهر فوراً في الـ UI
   loadQuestion(true);
-}
-
-function startFresh(){
-  localStorage.removeItem(SAVE_KEY);
-  document.getElementById('resumeBox').classList.add('hidden');
-  document.getElementById('freshBox').classList.remove('hidden');
 }
 
 function startGame(){
@@ -234,6 +222,7 @@ function startGame(){
   document.getElementById('quizScreen').classList.remove('hidden');
   ORDER = shuffle(QUESTIONS.map((_,i)=>i));
   current=0; gems=0;
+  updateGems();
   loadQuestion(false);
 }
 
@@ -296,7 +285,7 @@ function timeOut(){
   if(locked) return; locked=true;
   revealCorrect();
   const msg=document.getElementById('msg');
-  msg.textContent="⏰ خلص الوقت! الإجابة الصحيحة اتظهرت"; msg.className="msg bad";
+  msg.textContent="⏰ خلص الوقت! الإجابة الصحيحة ظهرت"; msg.className="msg bad";
   setTimeout(nextQuestion,1500);
 }
 
@@ -306,7 +295,7 @@ function solveFast(){
   gems-=100; updateGems();
   revealCorrect();
   const msg=document.getElementById('msg');
-  msg.textContent="⚡ تم حل السؤال تلقائيًا! -100 جواهر 💎"; msg.className="msg info";
+  msg.textContent="⚡ تم حل السؤال تلقائيًا! -100 جوهرة 💎"; msg.className="msg info";
   setTimeout(nextQuestion,1500);
 }
 
@@ -337,47 +326,3 @@ function resetAll(){
 </script>
 </body>
 </html>
-!DOCTYPE html>
-<html lang="ar" dir="rtl">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Gems Quiz — Rash</title>
-<style>
-  :root{
-    --gold:#d4af37; --gold-light:#f0d879; --bg1:#0d0b1e; --bg2:#1a1333;
-    --card:rgba(255,255,255,.06); --green:#22c55e; --red:#ef4444;
-  }
-  *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',Tahoma,sans-serif}
-  body{
-    min-height:100vh; background:linear-gradient(135deg,var(--bg1),var(--bg2));
-    display:flex; align-items:center; justify-content:center; padding:20px; color:#fff;
-  }
-  .container{
-    width:100%; max-width:640px; background:var(--card); backdrop-filter:blur(14px);
-    border:1px solid rgba(212,175,55,.35); border-radius:24px; padding:36px 30px;
-    box-shadow:0 25px 60px rgba(0,0,0,.5); text-align:center;
-  }
-  h1{font-size:2rem; background:linear-gradient(90deg,var(--gold),var(--gold-light));
-    -webkit-background-clip:text; background-clip:text; color:transparent; margin-bottom:6px}
-  .subtitle{color:#b9b3d6; font-size:1rem; margin-bottom:24px}
-  .hidden{display:none !important}
-
-  .stats{display:flex; justify-content:space-between; align-items:center; margin-bottom:24px; gap:10px; flex-wrap:wrap}
-  .stat{
-    background:rgba(0,0,0,.35); border:1px solid rgba(212,175,55,.25);
-    border-radius:14px; padding:10px 16px; font-weight:bold; font-size:1.05rem;
-  }
-  .gems{color:var(--gold-light)} .gems::before{content:"💎 "}
-  .qcount{color:#c7c2e8}
-
-  .timer-wrap{width:110px;height:110px;margin:0 auto 24px;position:relative}
-  .timer-wrap svg{transform:rotate(-90deg)}
-  .timer-bg{stroke:rgba(255,255,255,.1)}
-  .timer-fg{stroke:var(--gold); stroke-linecap:round; transition:stroke-dashoffset 1s linear, stroke .4s}
-  .timer-num{position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
-    font-size:2rem; font-weight:800; color:var(--gold-light);}
-  .timer-num.danger{color:var(--red); animation:pulse .5s infinite alternate}
-  @keyframes pulse{from{transform:scale(1)}to{transform:scale(1.15)}}
-
-  .cat-badge{display:inline-block; font-size:.8rem; background:rgba(212,175
