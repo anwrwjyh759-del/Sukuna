@@ -545,14 +545,14 @@ footer .copyright {
       type="text"
       maxlength="24"
       autocomplete="nickname"
-      placeholder=""
+      placeholder="اكتب اسمك هنا..."
     >
     <button id="startBtn" class="primary-btn" type="button">
       🚀 ابدأ المسابقة
     </button>
 
     <div class="subtitle" style="text-align:center;margin-bottom:0;margin-top:10px">
-       
+      سيتم حفظ تقدمك تلقائياً على هذا الجهاز.
     </div>
   </section>
 
@@ -599,7 +599,7 @@ footer .copyright {
 
     <div class="notice">
       الإجابة الصحيحة = ١٠ جواهر 💎<br>
-      المساعدة CA = خصم 100 جوهرة<br>
+      المساعدة CA = خصم 100 جوهرة والإجابة تلقائياً<br>
       أسرع قبل انتهاء الوقت!
     </div>
   </section>
@@ -1020,7 +1020,9 @@ function submitAnswer(selectedIndex, method) {
 
   if (isCorrect) {
     state.gems += 10;
-    $("feedback").textContent = "إجابة صحيحة! حصلت على ١٠ جواهر 💎";
+    $("feedback").textContent = method === "ca" 
+      ? "تم استخدام مساعدة CA! تم خصم 100 جوهرة والإجابة الصحيحة تلقائياً ✅" 
+      : "إجابة صحيحة! حصلت على ١٠ جواهر 💎";
   } else if (method === "timeout") {
     $("feedback").textContent = "انتهى الوقت! الإجابة الصحيحة موضحة بالأخضر.";
   } else {
@@ -1055,28 +1057,18 @@ $("nextBtn").addEventListener("click", () => {
 });
 
 /* ==========================
-   مساعدة CA (تجاهل الإجابات الخاطئة)
+   مساعدة CA (خصم 100 جيم والإجابة الصحيحة تلقائياً)
    ========================== */
 
 $("caBtn").addEventListener("click", () => {
   if (locked || !state || state.gems < 100) return;
 
-  state.gems -= 100;
+  state.gems -= 100; // خصم 100 جوهرة
   updateStats();
 
   const q = QUESTIONS[state.index];
-  const buttons = document.querySelectorAll(".answer");
-
-  buttons.forEach((btn, idx) => {
-    if (idx !== q.correct) {
-      btn.style.opacity = "0.3";
-      btn.style.pointerEvents = "none";
-    }
-  });
-
-  $("caBtn").disabled = true;
-  $("feedback").textContent = "تم تفعيل المساعدة CA! تم إخفاء الإجابات الخاطئة.";
-  save();
+  // الإجابة الصحيحة تلقائياً
+  submitAnswer(q.correct, "ca");
 });
 
 /* ==========================
