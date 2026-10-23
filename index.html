@@ -37,20 +37,34 @@ body.light {
   --shadow: 0 12px 35px rgba(40,70,120,.10);
 }
 
-* { box-sizing: border-box; }
+* {
+  box-sizing: border-box;
+}
 
 body {
   margin: 0;
-  background: radial-gradient(ellipse at top, rgba(35,90,170,.2), transparent 65%), var(--bg);
+  background:
+    radial-gradient(ellipse at top, rgba(35,90,170,.2), transparent 65%),
+    var(--bg);
   color: var(--text);
   font-family: 'Cairo', sans-serif;
   min-height: 100vh;
   transition: background .25s, color .25s;
 }
 
-button, input { font: inherit; }
-button { -webkit-tap-highlight-color: transparent; }
-button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+button, input {
+  font: inherit;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+button:focus-visible,
+input:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 .app {
   max-width: 520px;
@@ -60,75 +74,423 @@ button:focus-visible, input:focus-visible { outline: 2px solid var(--accent); ou
   padding: 16px 14px 22px;
 }
 
-.topbar { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
-.brand { color: var(--accent); font: 800 10px 'Orbitron', sans-serif; letter-spacing: .5px; direction: ltr; text-align: left; }
-.theme-btn, .secondary-btn { border: 1px solid var(--border); color: var(--text); background: var(--panel); border-radius: 12px; padding: 9px 12px; cursor: pointer; font-size: 12px; }
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
 
-.hero { text-align: center; padding: 22px 0 20px; }
-.building { height: 112px; display: flex; align-items: end; justify-content: center; gap: 5px; margin-bottom: 15px; }
-.tower { width: 23px; position: relative; overflow: hidden; border-radius: 4px 4px 0 0; background: linear-gradient(180deg, var(--accent), #2749a5); box-shadow: 0 0 16px rgba(70,217,255,.15); }
-.tower::after { content: ""; position: absolute; inset: 7px 5px; background: repeating-linear-gradient(180deg, rgba(255,255,255,.8) 0 4px, transparent 4px 10px); opacity: .5; }
+.brand {
+  color: var(--accent);
+  font: 800 10px 'Orbitron', sans-serif;
+  letter-spacing: .5px;
+  direction: ltr;
+  text-align: left;
+}
+
+.theme-btn,
+.secondary-btn {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 9px 12px;
+  cursor: pointer;
+  font-size: 12px;
+}
+
+.hero {
+  text-align: center;
+  padding: 22px 0 20px;
+}
+
+.building {
+  height: 112px;
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 5px;
+  margin-bottom: 15px;
+}
+
+.tower {
+  width: 23px;
+  position: relative;
+  overflow: hidden;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, var(--accent), #2749a5);
+  box-shadow: 0 0 16px rgba(70,217,255,.15);
+}
+
+.tower::after {
+  content: "";
+  position: absolute;
+  inset: 7px 5px;
+  background: repeating-linear-gradient(
+    180deg,
+    rgba(255,255,255,.8) 0 4px,
+    transparent 4px 10px
+  );
+  opacity: .5;
+}
+
 .tower:nth-child(1) { height: 38px; }
 .tower:nth-child(2) { height: 57px; }
 .tower:nth-child(3) { height: 83px; }
-.tower:nth-child(4) { height: 108px; width: 30px; background: linear-gradient(180deg, #fff1a8, #e6a32d); }
+.tower:nth-child(4) {
+  height: 108px;
+  width: 30px;
+  background: linear-gradient(180deg, #fff1a8, #e6a32d);
+}
 .tower:nth-child(5) { height: 75px; }
 .tower:nth-child(6) { height: 51px; }
 .tower:nth-child(7) { height: 32px; }
 
-.hero h1 { font: 900 clamp(22px, 6.4vw, 31px)/1.5 'Orbitron', sans-serif; direction: ltr; letter-spacing: -.7px; margin: 0; }
-.hero h1 span { display: block; color: var(--accent); }
-.arabic-title { font-size: 19px; font-weight: 900; margin: 12px 0 5px; }
-.subtitle { color: var(--muted); font-size: 12px; line-height: 1.9; }
-.church { margin-top: 15px; color: var(--gold); font-weight: 800; font-size: 13px; line-height: 1.9; }
+.hero h1 {
+  font: 900 clamp(22px, 6.4vw, 31px)/1.5 'Orbitron', sans-serif;
+  direction: ltr;
+  letter-spacing: -.7px;
+  margin: 0;
+}
 
-.card { background: var(--panel); border: 1px solid var(--border); border-radius: 21px; padding: 18px; box-shadow: var(--shadow); margin-bottom: 14px; }
-label { display: block; color: var(--muted); font-size: 13px; margin-bottom: 8px; }
-input { width: 100%; padding: 13px; color: var(--text); background: var(--panel2); border: 1px solid var(--border); border-radius: 12px; outline: none; }
-input:focus { border-color: var(--accent); }
+.hero h1 span {
+  display: block;
+  color: var(--accent);
+}
 
-.primary-btn { width: 100%; border: 0; border-radius: 13px; padding: 14px; margin-top: 13px; color: white; font-weight: 900; cursor: pointer; background: linear-gradient(110deg, #149fd8, #6255ed); box-shadow: 0 8px 22px rgba(45,120,240,.2); }
-.primary-btn:active { transform: scale(.99); }
+.arabic-title {
+  font-size: 19px;
+  font-weight: 900;
+  margin: 12px 0 5px;
+}
 
-.stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 14px; }
-.stat { min-width: 0; background: var(--panel); border: 1px solid var(--border); border-radius: 15px; padding: 12px; }
-.stat-label { color: var(--muted); font-size: 11px; margin-bottom: 5px; }
-.stat-value { color: var(--gold); font: 800 20px 'Orbitron', sans-serif; overflow-wrap: anywhere; }
-.player-name { color: var(--accent); font-size: 15px; font-weight: 800; overflow-wrap: anywhere; }
+.subtitle {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.9;
+}
 
-.progress-track { height: 6px; border-radius: 10px; background: var(--panel2); overflow: hidden; margin: 14px 0 18px; }
-.progress-fill { height: 100%; width: 0; background: linear-gradient(90deg, var(--accent), #8373ff); transition: width .25s; }
+.church {
+  margin-top: 15px;
+  color: var(--gold);
+  font-weight: 800;
+  font-size: 13px;
+  line-height: 1.9;
+}
 
-.question-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; flex-wrap: wrap; }
-.badge { background: var(--panel2); color: var(--accent); border-radius: 9px; padding: 7px 9px; font-size: 10px; font-weight: 800; }
-.timer { flex-shrink: 0; width: 44px; height: 44px; border: 3px solid var(--accent); border-radius: 50%; display: grid; place-items: center; font: 800 17px 'Orbitron', sans-serif; color: var(--accent); }
-.timer.danger { color: var(--red); border-color: var(--red); animation: pulse .5s infinite alternate; }
-@keyframes pulse { to { transform: scale(1.06); } }
+.card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 21px;
+  padding: 18px;
+  box-shadow: var(--shadow);
+  margin-bottom: 14px;
+}
 
-.question { font-size: 17px; font-weight: 800; line-height: 1.9; margin: 17px 0; overflow-wrap: anywhere; }
-.answers { display: grid; gap: 10px; }
-.answer { width: 100%; text-align: right; padding: 12px 13px; color: var(--text); background: var(--panel2); border: 1px solid var(--border); border-radius: 12px; cursor: pointer; font-size: 13px; line-height: 1.8; transition: .15s; }
-.answer:active:not(:disabled) { transform: scale(.99); }
-.answer:disabled { cursor: default; }
-.answer.correct { border-color: var(--green); background: rgba(66,230,164,.13); }
-.answer.wrong { border-color: var(--red); background: rgba(255,97,124,.12); }
+label {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
 
-.feedback { min-height: 26px; margin-top: 13px; color: var(--muted); font-size: 13px; line-height: 1.9; }
-.action-row { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; margin-top: 13px; }
-.ca-btn { padding: 12px 5px; color: var(--gold); background: rgba(255,209,102,.08); border: 1px solid rgba(255,209,102,.4); border-radius: 12px; font-size: 12px; font-weight: 900; cursor: pointer; }
-.ca-btn:disabled { opacity: .3; filter: grayscale(1); cursor: not-allowed; }
-.next-btn { padding: 12px 5px; color: white; background: linear-gradient(110deg, #4856e8, #8d55e8); border: 0; border-radius: 12px; font-size: 13px; font-weight: 900; cursor: pointer; }
-.next-btn:disabled { opacity: .35; cursor: not-allowed; }
+input {
+  width: 100%;
+  padding: 13px;
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  outline: none;
+}
 
-.notice { text-align: center; color: var(--muted); font-size: 11px; line-height: 2; padding: 5px 4px 15px; }
-.result { text-align: center; padding: 18px 5px; }
-.trophy { font-size: 50px; }
-.result h2 { color: var(--gold); font-size: 22px; margin: 12px 0; }
-.result-score { direction: ltr; font: 900 30px 'Orbitron', sans-serif; color: var(--accent); margin: 22px 0; overflow-wrap: anywhere; }
-.hidden { display: none !important; }
+input:focus {
+  border-color: var(--accent);
+}
 
-footer { text-align: center; border-top: 1px solid var(--border); padding: 19px 5px 5px; margin-top: 8px; color: var(--muted); font-size: 11px; line-height: 2.2; }
-footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbitron', sans-serif; direction: ltr; margin-top: 6px; }
+.primary-btn {
+  width: 100%;
+  border: 0;
+  border-radius: 13px;
+  padding: 14px;
+  margin-top: 13px;
+  color: white;
+  font-weight: 900;
+  cursor: pointer;
+  background: linear-gradient(110deg, #149fd8, #6255ed);
+  box-shadow: 0 8px 22px rgba(45,120,240,.2);
+}
+
+.primary-btn:active {
+  transform: scale(.99);
+}
+
+.stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.stat {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 15px;
+  padding: 12px;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 5px;
+}
+
+.stat-value {
+  color: var(--gold);
+  font: 800 20px 'Orbitron', sans-serif;
+  overflow-wrap: anywhere;
+}
+
+.player-name {
+  color: var(--accent);
+  font-size: 15px;
+  font-weight: 800;
+  overflow-wrap: anywhere;
+}
+
+.progress-track {
+  height: 6px;
+  border-radius: 10px;
+  background: var(--panel2);
+  overflow: hidden;
+  margin: 14px 0 18px;
+}
+
+.progress-fill {
+  height: 100%;
+  width: 0;
+  background: linear-gradient(90deg, var(--accent), #8373ff);
+  transition: width .25s;
+}
+
+.question-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  background: var(--panel2);
+  color: var(--accent);
+  border-radius: 9px;
+  padding: 7px 9px;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.timer {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font: 800 17px 'Orbitron', sans-serif;
+  color: var(--accent);
+}
+
+.timer.danger {
+  color: var(--red);
+  border-color: var(--red);
+  animation: pulse .5s infinite alternate;
+}
+
+@keyframes pulse {
+  to { transform: scale(1.06); }
+}
+
+.question {
+  font-size: 17px;
+  font-weight: 800;
+  line-height: 1.9;
+  margin: 17px 0;
+  overflow-wrap: anywhere;
+}
+
+.answers {
+  display: grid;
+  gap: 10px;
+}
+
+.answer {
+  width: 100%;
+  text-align: right;
+  padding: 12px 13px;
+  color: var(--text);
+  background: var(--panel2);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1.8;
+  transition: .15s;
+}
+
+.answer:active:not(:disabled) {
+  transform: scale(.99);
+}
+
+.answer:disabled {
+  cursor: default;
+}
+
+.answer.correct {
+  border-color: var(--green);
+  background: rgba(66,230,164,.13);
+}
+
+.answer.wrong {
+  border-color: var(--red);
+  background: rgba(255,97,124,.12);
+}
+
+.feedback {
+  min-height: 26px;
+  margin-top: 13px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1.9;
+}
+
+.action-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 9px;
+  margin-top: 13px;
+}
+
+.ca-btn {
+  padding: 12px 5px;
+  color: var(--gold);
+  background: rgba(255,209,102,.08);
+  border: 1px solid rgba(255,209,102,.4);
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.ca-btn:disabled {
+  opacity: .3;
+  filter: grayscale(1);
+  cursor: not-allowed;
+}
+
+.next-btn {
+  padding: 12px 5px;
+  color: white;
+  background: linear-gradient(110deg, #4856e8, #8d55e8);
+  border: 0;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.next-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+}
+
+.notice {
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 2;
+  padding: 5px 4px 15px;
+}
+
+.result {
+  text-align: center;
+  padding: 18px 5px;
+}
+
+.trophy {
+  font-size: 50px;
+}
+
+.result h2 {
+  color: var(--gold);
+  font-size: 22px;
+  margin: 12px 0;
+}
+
+.result-score {
+  direction: ltr;
+  font: 900 30px 'Orbitron', sans-serif;
+  color: var(--accent);
+  margin: 22px 0;
+  overflow-wrap: anywhere;
+}
+
+/* Kaito / Next Quiz Banner */
+.next-quiz-box {
+  margin-top: 20px;
+  padding: 15px;
+  background: linear-gradient(135deg, rgba(70,217,255,.08) 0%, rgba(98,85,237,.12) 100%);
+  border: 1px dashed var(--accent);
+  border-radius: 15px;
+  box-shadow: 0 0 18px rgba(70,217,255,.15);
+}
+
+.next-quiz-tag {
+  font-size: 11px;
+  color: var(--gold);
+  font-weight: 800;
+  margin-bottom: 4px;
+}
+
+.next-quiz-title-eng {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  color: var(--accent);
+  letter-spacing: 1px;
+  direction: ltr;
+}
+
+.next-quiz-title-ar {
+  font-size: 12px;
+  color: var(--text);
+  margin-top: 2px;
+}
+
+.hidden {
+  display: none !important;
+}
+
+footer {
+  text-align: center;
+  border-top: 1px solid var(--border);
+  padding: 19px 5px 5px;
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 11px;
+  line-height: 2.2;
+}
+
+footer .copyright {
+  display: block;
+  color: var(--accent);
+  font: 700 9px/2 'Orbitron', sans-serif;
+  direction: ltr;
+  margin-top: 6px;
+}
 
 @media (max-width: 360px) {
   .app { padding: 12px 10px; }
@@ -144,7 +506,9 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
 
   <header class="topbar">
     <div class="brand">THE COUNTDOWN TO SKY SCRAPER</div>
-    <button id="themeBtn" class="theme-btn" type="button">🌙 الوضع الليلي</button>
+    <button id="themeBtn" class="theme-btn" type="button">
+      🌙 الوضع الليلي
+    </button>
   </header>
 
   <section class="hero">
@@ -158,17 +522,38 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
       <div class="tower"></div>
     </div>
 
-    <h1>THE COUNTDOWN <span>TO SKY SCRAPER</span></h1>
+    <h1>
+      THE COUNTDOWN
+      <span>TO SKY SCRAPER</span>
+    </h1>
+
     <div class="arabic-title">مسابقة العد التنازلي لناطحة السحاب</div>
-    <div class="subtitle">٢٠ سؤالًا • ٥ ثوانٍ لكل سؤال • تحدَّ نفسك!<br></div>
-    <div class="church">⛪ كنيسة العذراء مريم ومار مرقس الرسول</div>
+
+    <div class="subtitle">
+      ٢٠ سؤالًا • ٥ ثوانٍ لكل سؤال • تحدَّ نفسك!<br>
+    </div>
+
+    <div class="church">
+      ⛪ كنيسة العذراء مريم ومار مرقس الرسول
+    </div>
   </section>
 
   <section id="loginCard" class="card">
     <label for="playerName">اكتب اسمك للمشاركة في المسابقة</label>
-    <input id="playerName" type="text" maxlength="24" autocomplete="nickname" placeholder="اكتب اسمك هنا...">
-    <button id="startBtn" class="primary-btn" type="button">🚀 ابدأ المسابقة</button>
-    <div class="subtitle" style="text-align:center;margin-bottom:0">سيتم حفظ تقدمك تلقائيًا على هذا الجهاز.</div>
+    <input
+      id="playerName"
+      type="text"
+      maxlength="24"
+      autocomplete="nickname"
+      placeholder=""
+    >
+    <button id="startBtn" class="primary-btn" type="button">
+      🚀 ابدأ المسابقة
+    </button>
+
+    <div class="subtitle" style="text-align:center;margin-bottom:0;margin-top:10px">
+       
+    </div>
   </section>
 
   <section id="game" class="hidden">
@@ -177,6 +562,7 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
         <div class="stat-label">👤 اسم المتسابق</div>
         <div id="playerDisplay" class="player-name"></div>
       </div>
+
       <div class="stat">
         <div class="stat-label">💎 GEMS</div>
         <div id="gems" class="stat-value">0</div>
@@ -195,12 +581,19 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
       </div>
 
       <div id="question" class="question"></div>
+
       <div id="answers" class="answers"></div>
+
       <div id="feedback" class="feedback" aria-live="polite"></div>
 
       <div class="action-row">
-        <button id="caBtn" class="ca-btn" type="button">CA ⚡ · 100 GEMS</button>
-        <button id="nextBtn" class="next-btn" type="button" disabled>السؤال التالي ←</button>
+        <button id="caBtn" class="ca-btn" type="button">
+          CA ⚡ · 100 GEMS
+        </button>
+
+        <button id="nextBtn" class="next-btn" type="button" disabled>
+          السؤال التالي ←
+        </button>
       </div>
     </div>
 
@@ -215,11 +608,28 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
     <div class="result">
       <div class="trophy">🏆</div>
       <h2>مبروك! أنهيت المسابقة</h2>
+
       <div id="resultName" class="subtitle"></div>
+
       <div id="finalGems" class="result-score">0 GEMS</div>
+
       <div id="resultMessage" class="subtitle"></div>
-      <button id="restartBtn" class="primary-btn" type="button">🔄 ابدأ مسابقة جديدة</button>
-      <button id="homeBtn" class="secondary-btn" type="button" style="width:100%;margin-top:10px">العودة إلى الصفحة الرئيسية</button>
+
+      <!-- الإعلان عن المسابقة القادمة -->
+      <div class="next-quiz-box">
+        <div class="next-quiz-tag">🎯 المسابقة القادمة:</div>
+        <div class="next-quiz-title-eng">THE FOURTEENTH TARGET</div>
+        <div class="next-quiz-title-ar">المسابقة القادمة: الهدف الرابع عشر 🎯✨</div>
+      </div>
+
+      <button id="restartBtn" class="primary-btn" type="button" style="margin-top:20px">
+        🔄 ابدأ مسابقة جديدة
+      </button>
+
+      <button id="homeBtn" class="secondary-btn"
+        type="button" style="width:100%;margin-top:10px">
+        العودة إلى الصفحة الرئيسية
+      </button>
     </div>
   </section>
 
@@ -232,273 +642,484 @@ footer .copyright { display: block; color: var(--accent); font: 700 9px/2 'Orbit
 
 </div>
 
-<!-- الجافاسكريبت هنا جوه الـ body وقبل قفله مباشرة -->
 <script>
-document.addEventListener("DOMContentLoaded", function() {
-  "use strict";
+"use strict";
 
-  const QUESTIONS = [
-    { category: "أسئلة دينية أرثوذكسية", q: "كم عدد أسرار الكنيسة السبعة في التقليد القبطي الأرثوذكسي؟", a: ["ثلاثة أسرار", "خمسة أسرار", "سبعة أسرار", "عشرة أسرار"], correct: 2 },
-    { category: "أسئلة دينية أرثوذكسية", q: "مَن الذي عمَّد السيد المسيح؟", a: ["القديس بطرس", "يوحنا المعمدان", "القديس بولس", "القديس مرقس"], correct: 1 },
-    { category: "أسئلة دينية أرثوذكسية", q: "أين وُلد السيد المسيح؟", a: ["الناصرة", "أورشليم", "بيت لحم", "قانا الجليل"], correct: 2 },
-    { category: "أسئلة دينية أرثوذكسية", q: "مَن يُعتبر تقليديًا أول بطريرك للكنيسة القبطية الأرثوذكسية؟", a: ["القديس أثناسيوس", "القديس مرقس الرسول", "القديس جورجيوس", "القديس موسى الأسود"], correct: 1 },
-    { category: "أسئلة دينية أرثوذكسية", q: "ما الصلاة التي علَّمها السيد المسيح لتلاميذه؟", a: ["الصلاة الربانية", "قانون الإيمان", "صلاة الشكر فقط", "المزامير"], correct: 0 },
-    { category: "أسئلة دينية أرثوذكسية", q: "كم يومًا صام السيد المسيح في البرية؟", a: ["٧ أيام", "١٢ يومًا", "٣٠ يومًا", "٤٠ يومًا"], correct: 3 },
-    { category: "أسئلة دينية أرثوذكسية", q: "أي إنجيل يبدأ بالحديث عن الكلمة؟", a: ["إنجيل متى", "إنجيل مرقس", "إنجيل لوقا", "إنجيل يوحنا"], correct: 3 },
-    { category: "أسئلة دينية أرثوذكسية", q: "مَن هي أم السيد المسيح؟", a: ["القديسة مرثا", "القديسة مريم العذراء", "القديسة أليصابات", "القديسة حنة"], correct: 1 },
-    { category: "أسئلة دينية أرثوذكسية", q: "ما الحدث الذي يحتفل به المسيحيون في عيد القيامة؟", a: ["الميلاد", "الصعود فقط", "قيامة السيد المسيح", "العماد"], correct: 2 },
-    { category: "أسئلة دينية أرثوذكسية", q: "ما السفر الذي يأتي بعد الأناجيل الأربعة في العهد الجديد؟", a: ["رسالة رومية", "سفر أعمال الرسل", "سفر الرؤيا", "سفر التكوين"], correct: 1 },
-    { category: "أسئلة عامة", q: "ما عاصمة اليابان؟", a: ["سيول", "بكين", "طوكيو", "بانكوك"], correct: 2 },
-    { category: "أسئلة عامة", q: "ما الكوكب المعروف باسم الكوكب الأحمر؟", a: ["الزهرة", "المريخ", "المشتري", "عطارد"], correct: 1 },
-    { category: "أسئلة عامة", q: "كم ضلعًا للشكل السداسي؟", a: ["خمسة", "ستة", "سبعة", "ثمانية"], correct: 1 },
-    { category: "أسئلة عامة", q: "ما أكبر محيط على سطح الأرض؟", a: ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي", "المحيط الهادئ"], correct: 3 },
-    { category: "أسئلة عامة", q: "ما الصيغة الكيميائية للماء؟", a: ["CO2", "O2", "H2O", "NaCl"], correct: 2 },
-    { category: "أسئلة عامة", q: "ما أكبر حيوان ثديي في العالم؟", a: ["الفيل الأفريقي", "الحوت الأزرق", "الزرافة", "فرس النهر"], correct: 1 },
-    { category: "أسئلة عامة", q: "كم دقيقة في الساعة الواحدة؟", a: ["٣٠ دقيقة", "٤٥ دقيقة", "٦٠ دقيقة", "١٠٠ دقيقة"], correct: 2 },
-    { category: "أسئلة عامة", q: "في أي قارة تقع مصر؟", a: ["أوروبا", "أفريقيا", "أمريكا الجنوبية", "أستراليا"], correct: 1 },
-    { category: "أسئلة عامة", q: "بأي جهاز نقيس درجة الحرارة؟", a: ["البارومتر", "الترمومتر", "البوصلة", "عداد السرعة"], correct: 1 },
-    { category: "أسئلة عامة", q: "ما أقرب نجم إلى الأرض؟", a: ["الشعرى اليمانية", "النجم القطبي", "الشمس", "النسر الواقع"], correct: 2 }
-  ];
+/* ==========================
+   الأسئلة: ١٠ دينية و١٠ عامة
+   ========================== */
 
-  const SAVE_KEY = "sky_scraper_arabic_v2";
-  const THEME_KEY = "sky_scraper_theme_v2";
+const QUESTIONS = [
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "كم عدد أسرار الكنيسة السبعة في التقليد القبطي الأرثوذكسي؟",
+    a: ["ثلاثة أسرار", "خمسة أسرار", "سبعة أسرار", "عشرة أسرار"],
+    correct: 2
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "مَن الذي عمَّد السيد المسيح؟",
+    a: ["القديس بطرس", "يوحنا المعمدان", "القديس بولس", "القديس مرقس"],
+    correct: 1
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "أين وُلد السيد المسيح؟",
+    a: ["الناصرة", "أورشليم", "بيت لحم", "قانا الجليل"],
+    correct: 2
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "مَن يُعتبر تقليديًا أول بطريرك للكنيسة القبطية الأرثوذكسية؟",
+    a: ["القديس أثناسيوس", "القديس مرقس الرسول", "القديس جورجيوس", "القديس موسى الأسود"],
+    correct: 1
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "ما الصلاة التي علَّمها السيد المسيح لتلاميذه؟",
+    a: ["الصلاة الربانية", "قانون الإيمان", "صلاة الشكر فقط", "المزامير"],
+    correct: 0
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "كم يومًا صام السيد المسيح في البرية؟",
+    a: ["٧ أيام", "١٢ يومًا", "٣٠ يومًا", "٤٠ يومًا"],
+    correct: 3
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "أي إنجيل يبدأ بالحديث عن الكلمة؟",
+    a: ["إنجيل متى", "إنجيل مرقس", "إنجيل لوقا", "إنجيل يوحنا"],
+    correct: 3
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "مَن هي أم السيد المسيح؟",
+    a: ["القديسة مرثا", "القديسة مريم العذراء", "القديسة أليصابات", "القديسة حنة"],
+    correct: 1
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "ما الحدث الذي يحتفل به المسيحيون في عيد القيامة؟",
+    a: ["الميلاد", "الصعود فقط", "قيامة السيد المسيح", "العماد"],
+    correct: 2
+  },
+  {
+    category: "أسئلة دينية أرثوذكسية",
+    q: "ما السفر الذي يأتي بعد الأناجيل الأربعة في العهد الجديد؟",
+    a: ["رسالة رومية", "سفر أعمال الرسل", "سفر الرؤيا", "سفر التكوين"],
+    correct: 1
+  },
 
-  let state = null;
-  let timerInterval = null;
-  let locked = false;
-
-  const $ = id => document.getElementById(id);
-
-  function save() {
-    if (!state) return;
-    try { localStorage.setItem(SAVE_KEY, JSON.stringify(state)); } catch (e) {}
+  {
+    category: "أسئلة عامة",
+    q: "ما عاصمة اليابان؟",
+    a: ["سيول", "بكين", "طوكيو", "بانكوك"],
+    correct: 2
+  },
+  {
+    category: "أسئلة عامة",
+    q: "ما الكوكب المعروف باسم الكوكب الأحمر؟",
+    a: ["الزهرة", "المريخ", "المشتري", "عطارد"],
+    correct: 1
+  },
+  {
+    category: "أسئلة عامة",
+    q: "كم ضلعًا للشكل السداسي؟",
+    a: ["خمسة", "ستة", "سبعة", "ثمانية"],
+    correct: 1
+  },
+  {
+    category: "أسئلة عامة",
+    q: "ما أكبر محيط على سطح الأرض؟",
+    a: ["المحيط الأطلسي", "المحيط الهندي", "المحيط المتجمد الشمالي", "المحيط الهادئ"],
+    correct: 3
+  },
+  {
+    category: "أسئلة عامة",
+    q: "ما الصيغة الكيميائية للماء؟",
+    a: ["CO2", "O2", "H2O", "NaCl"],
+    correct: 2
+  },
+  {
+    category: "أسئلة عامة",
+    q: "ما أكبر حيوان ثديي في العالم؟",
+    a: ["الفيل الأفريقي", "الحوت الأزرق", "الزرافة", "فرس النهر"],
+    correct: 1
+  },
+  {
+    category: "أسئلة عامة",
+    q: "كم دقيقة في الساعة الواحدة؟",
+    a: ["٣٠ دقيقة", "٤٥ دقيقة", "٦٠ دقيقة", "١٠٠ دقيقة"],
+    correct: 2
+  },
+  {
+    category: "أسئلة عامة",
+    q: "في أي قارة تقع مصر؟",
+    a: ["أوروبا", "أفريقيا", "أمريكا الجنوبية", "أستراليا"],
+    correct: 1
+  },
+  {
+    category: "أسئلة عامة",
+    q: "بأي جهاز نقيس درجة الحرارة؟",
+    a: ["البارومتر", "الترمومتر", "البوصلة", "عداد السرعة"],
+    correct: 1
+  },
+  {
+    category: "أسئلة عامة",
+    q: "ما أقرب نجم إلى الأرض؟",
+    a: ["الشعرى اليمانية", "النجم القطبي", "الشمس", "النسر الواقع"],
+    correct: 2
   }
+];
 
-  function load() {
-    try {
-      const raw = localStorage.getItem(SAVE_KEY);
-      if (!raw) return null;
-      const s = JSON.parse(raw);
-      if (!s || typeof s.name !== "string" || !Number.isInteger(s.index) || !Number.isInteger(s.gems) || !Array.isArray(s.results) || s.index < 0 || s.index > QUESTIONS.length || s.gems < 0 || s.results.length > QUESTIONS.length) return null;
-      return s;
-    } catch (e) { return null; }
+/* ==========================
+   حفظ واسترجاع التقدم
+   ========================== */
+
+const SAVE_KEY = "sky_scraper_arabic_v2";
+const THEME_KEY = "sky_scraper_theme_v2";
+
+let state = null;
+let timerInterval = null;
+let locked = false;
+
+const $ = id => document.getElementById(id);
+
+function save() {
+  if (!state) return;
+
+  try {
+    localStorage.setItem(SAVE_KEY, JSON.stringify(state));
+  } catch (error) {
+    console.warn("تعذر حفظ التقدم", error);
   }
+}
 
-  function applyTheme(theme) {
-    document.body.classList.toggle("light", theme === "light");
-    $("themeBtn").textContent = theme === "light" ? "🌙 الوضع الليلي" : "☀️ الوضع النهاري";
-    try { localStorage.setItem(THEME_KEY, theme); } catch (e) {}
-  }
+function load() {
+  try {
+    const raw = localStorage.getItem(SAVE_KEY);
+    if (!raw) return null;
 
-  let initialTheme = "dark";
-  try { initialTheme = localStorage.getItem(THEME_KEY) || "dark"; } catch (e) {}
-  applyTheme(initialTheme);
+    const s = JSON.parse(raw);
 
-  $("themeBtn").addEventListener("click", () => {
-    const nextTheme = document.body.classList.contains("light") ? "dark" : "light";
-    applyTheme(nextTheme);
-  });
-
-  function showScreen(screen) {
-    $("loginCard").classList.toggle("hidden", screen !== "login");
-    $("game").classList.toggle("hidden", screen !== "game");
-    $("resultCard").classList.toggle("hidden", screen !== "result");
-  }
-
-  function updateStats() {
-    $("playerDisplay").textContent = state.name;
-    $("gems").textContent = state.gems.toLocaleString("en-US");
-  }
-
-  function startGame() {
-    const name = $("playerName").value.trim();
-    if (!name) {
-      $("playerName").focus();
-      $("playerName").setCustomValidity("من فضلك اكتب اسمك أولًا.");
-      $("playerName").reportValidity();
-      $("playerName").setCustomValidity("");
-      return;
+    if (
+      !s ||
+      typeof s.name !== "string" ||
+      !Number.isInteger(s.index) ||
+      !Number.isInteger(s.gems) ||
+      !Array.isArray(s.results) ||
+      s.index < 0 ||
+      s.index > QUESTIONS.length ||
+      s.gems < 0 ||
+      s.results.length > QUESTIONS.length
+    ) {
+      return null;
     }
 
-    state = {
-      name: name.slice(0, 24),
-      index: 0,
-      gems: 0,
-      results: [],
-      complete: false,
-      questionStartedAt: 0,
-      deadline: 0,
-      questionLocked: false
-    };
+    return s;
+  } catch (error) {
+    return null;
+  }
+}
 
-    save();
-    showScreen("game");
-    renderQuestion();
+/* ==========================
+   الوضع النهاري والليلي
+   ========================== */
+
+function applyTheme(theme) {
+  document.body.classList.toggle("light", theme === "light");
+
+  $("themeBtn").textContent =
+    theme === "light" ? "🌙 الوضع الليلي" : "☀️ الوضع النهاري";
+
+  try {
+    localStorage.setItem(THEME_KEY, theme);
+  } catch (error) {}
+}
+
+let initialTheme = "dark";
+
+try {
+  initialTheme = localStorage.getItem(THEME_KEY) || "dark";
+} catch (error) {}
+
+applyTheme(initialTheme);
+
+$("themeBtn").addEventListener("click", () => {
+  const nextTheme =
+    document.body.classList.contains("light") ? "dark" : "light";
+
+  applyTheme(nextTheme);
+});
+
+/* ==========================
+   إدارة صفحات اللعبة
+   ========================== */
+
+function showScreen(screen) {
+  $("loginCard").classList.toggle("hidden", screen !== "login");
+  $("game").classList.toggle("hidden", screen !== "game");
+  $("resultCard").classList.toggle("hidden", screen !== "result");
+}
+
+function updateStats() {
+  $("playerDisplay").textContent = state.name;
+  $("gems").textContent = state.gems.toLocaleString("en-US");
+}
+
+function startGame() {
+  const name = $("playerName").value.trim();
+
+  if (!name) {
+    $("playerName").focus();
+    $("playerName").setCustomValidity("من فضلك اكتب اسمك أولًا.");
+    $("playerName").reportValidity();
+    $("playerName").setCustomValidity("");
+    return;
   }
 
-  $("startBtn").addEventListener("click", startGame);
-  $("playerName").addEventListener("keydown", event => { if (event.key === "Enter") startGame(); });
+  state = {
+    name: name.slice(0, 24),
+    index: 0,
+    gems: 0,
+    results: [],
+    complete: false,
+    questionStartedAt: 0,
+    deadline: 0,
+    questionLocked: false
+  };
 
-  function renderQuestion() {
-    clearInterval(timerInterval);
-    locked = false;
+  save();
+  showScreen("game");
+  renderQuestion();
+}
 
-    if (state.index >= QUESTIONS.length) {
-      finishGame();
-      return;
-    }
+$("startBtn").addEventListener("click", startGame);
 
-    const q = QUESTIONS[state.index];
-    $("category").textContent = q.category;
-    $("questionNumber").textContent = `السؤال ${state.index + 1} من ${QUESTIONS.length}`;
-    $("progress").style.width = `${(state.index / QUESTIONS.length) * 100}%`;
-    $("question").textContent = q.q;
-    $("feedback").textContent = "";
-    $("answers").replaceChildren();
+$("playerName").addEventListener("keydown", event => {
+  if (event.key === "Enter") startGame();
+});
 
-    q.a.forEach((answer, index) => {
-      const button = document.createElement("button");
-      button.type = "button";
-      button.className = "answer";
-      button.textContent = `${["أ", "ب", "ج", "د"][index]}) ${answer}`;
-      button.addEventListener("click", () => submitAnswer(index, "answer"));
-      $("answers").appendChild(button);
+/* ==========================
+   عرض السؤال والمؤقت
+   ========================== */
+
+function renderQuestion() {
+  clearInterval(timerInterval);
+  locked = false;
+
+  if (state.index >= QUESTIONS.length) {
+    finishGame();
+    return;
+  }
+
+  const q = QUESTIONS[state.index];
+
+  $("category").textContent = q.category;
+  $("questionNumber").textContent =
+    `السؤال ${state.index + 1} من ${QUESTIONS.length}`;
+
+  $("progress").style.width =
+    `${(state.index / QUESTIONS.length) * 100}%`;
+
+  $("question").textContent = q.q;
+  $("feedback").textContent = "";
+  $("answers").replaceChildren();
+
+  q.a.forEach((answer, index) => {
+    const button = document.createElement("button");
+
+    button.type = "button";
+    button.className = "answer";
+    button.textContent =
+      `${["أ", "ب", "ج", "د"][index]}) ${answer}`;
+
+    button.addEventListener("click", () => {
+      submitAnswer(index, "answer");
     });
 
-    $("nextBtn").disabled = true;
-    $("nextBtn").textContent = "السؤال التالي ←";
-    $("caBtn").disabled = state.gems < 100;
-    updateStats();
+    $("answers").appendChild(button);
+  });
 
-    if (!state.questionStartedAt || !state.deadline) {
-      state.questionStartedAt = Date.now();
-      state.deadline = Date.now() + 5000;
-      save();
-    }
-    startTimer();
+  $("nextBtn").disabled = true;
+  $("caBtn").disabled = state.gems < 100;
+
+  updateStats();
+
+  if (!state.questionStartedAt || !state.deadline) {
+    state.questionStartedAt = Date.now();
+    state.deadline = Date.now() + 5000;
+    save();
   }
 
-  function startTimer() {
-    clearInterval(timerInterval);
-    function tick() {
-      if (!state || locked) return;
-      const remaining = Math.max(0, Math.ceil((state.deadline - Date.now()) / 1000));
-      $("timer").textContent = remaining;
-      $("timer").classList.toggle("danger", remaining <= 2);
-      if (Date.now() >= state.deadline) {
-        clearInterval(timerInterval);
-        if (!locked) submitAnswer(-1, "timeout");
+  startTimer();
+}
+
+function startTimer() {
+  clearInterval(timerInterval);
+
+  function tick() {
+    if (!state || locked) return;
+
+    const remaining = Math.max(
+      0,
+      Math.ceil((state.deadline - Date.now()) / 1000)
+    );
+
+    $("timer").textContent = remaining;
+    $("timer").classList.toggle("danger", remaining <= 2);
+
+    if (Date.now() >= state.deadline) {
+      clearInterval(timerInterval);
+
+      if (!locked) {
+        submitAnswer(-1, "timeout");
       }
     }
-    tick();
-    timerInterval = setInterval(tick, 100);
   }
 
-  function submitAnswer(selectedIndex, method) {
-    if (locked || !state) return;
-    if (method === "answer" && Date.now() >= state.deadline) {
-      submitAnswer(-1, "timeout");
-      return;
-    }
-    locked = true;
-    clearInterval(timerInterval);
+  tick();
+  timerInterval = setInterval(tick, 100);
+}
 
-    const q = QUESTIONS[state.index];
-    const correct = selectedIndex === q.correct;
-    const isTimeout = selectedIndex === -1;
+function disableAnswers() {
+  document.querySelectorAll(".answer").forEach(button => {
+    button.disabled = true;
+  });
+}
 
-    const buttons = document.querySelectorAll(".answer");
-    buttons.forEach((btn, idx) => {
-      btn.disabled = true;
-      if (idx === q.correct) btn.classList.add("correct");
-      else if (idx === selectedIndex) btn.classList.add("wrong");
-    });
+/* ==========================
+   الإجابة واحتساب الجواهر
+   ========================== */
 
-    if (correct) {
-      state.gems += 10;
-      $("feedback").textContent = "إجابة صحيحة! +10 جواهر 💎";
-      $("feedback").style.color = "var(--green)";
-    } else if (isTimeout) {
-      $("feedback").textContent = "انتهى الوقت! الإجابة الصحيحة موضحة باللون الأخضر.";
-      $("feedback").style.color = "var(--red)";
-    } else {
-      $("feedback").textContent = "إجابة خاطئة. الإجابة الصحيحة موضحة باللون الأخضر.";
-      $("feedback").style.color = "var(--red)";
-    }
+function submitAnswer(selectedIndex, method) {
+  if (locked || !state) return;
 
-    state.results.push({ questionIndex: state.index, selected: selectedIndex, correct: correct, method: method });
-    state.index++;
-    state.questionStartedAt = 0;
-    state.deadline = 0;
-    save();
-
-    $("nextBtn").disabled = false;
-    $("caBtn").disabled = state.gems < 100;
-    updateStats();
-
-    if (state.index >= QUESTIONS.length) {
-      $("nextBtn").textContent = "عرض النتيجة 🏆";
-    }
+  if (method === "answer" && Date.now() >= state.deadline) {
+    submitAnswer(-1, "timeout");
+    return;
   }
 
-  $("nextBtn").addEventListener("click", () => {
-    if (state.index >= QUESTIONS.length) finishGame();
-    else renderQuestion();
-  });
+  locked = true;
+  clearInterval(timerInterval);
 
-  $("caBtn").addEventListener("click", () => {
-    if (!state || state.gems < 100 || locked) return;
-    state.gems -= 100;
-    updateStats();
-    $("caBtn").disabled = true;
-    $("feedback").textContent = "تم استخدام المساعدة (CA). تم خصم 100 جوهرة.";
-    $("feedback").style.color = "var(--gold)";
-    save();
-  });
+  const q = QUESTIONS[state.index];
+  const isCorrect = selectedIndex === q.correct;
+  const buttons = document.querySelectorAll(".answer");
 
-  function finishGame() {
-    clearInterval(timerInterval);
-    state.complete = true;
-    save();
-    showScreen("result");
+  disableAnswers();
 
-    $("resultName").textContent = `شكراً لمشاركتك يا ${state.name}`;
-    $("finalGems").textContent = `${state.gems} GEMS`;
-
-    if (state.gems >= 150) $("resultMessage").textContent = "أداء رائع! أنت بطل ناطحة السحاب! 🏗️";
-    else if (state.gems >= 50) $("resultMessage").textContent = "مجهود جيد جداً، يمكنك تحسين نتيجتك في المرة القادمة! 💪";
-    else $("resultMessage").textContent = "لا بأس، المحاولة القادمة ستكون أفضل! 🌟";
+  if (selectedIndex >= 0 && selectedIndex < buttons.length) {
+    buttons[selectedIndex].classList.add(isCorrect ? "correct" : "wrong");
   }
 
-  $("restartBtn").addEventListener("click", () => {
-    localStorage.removeItem(SAVE_KEY);
-    state = null;
-    $("playerName").value = "";
-    $("nextBtn").textContent = "السؤال التالي ←";
-    showScreen("login");
-  });
-
-  $("homeBtn").addEventListener("click", () => {
-    localStorage.removeItem(SAVE_KEY);
-    state = null;
-    $("playerName").value = "";
-    $("nextBtn").textContent = "السؤال التالي ←";
-    showScreen("login");
-  });
-
-  const savedState = load();
-  if (savedState && !savedState.complete && savedState.index < QUESTIONS.length) {
-    state = savedState;
-    if (state.deadline && state.deadline > Date.now()) {
-      showScreen("game");
-      renderQuestion();
-    } else if (state.index > 0) {
-      showScreen("game");
-      renderQuestion();
-    }
+  if (!isCorrect) {
+    buttons[q.correct].classList.add("correct");
   }
 
+  if (isCorrect) {
+    state.gems += 10;
+    $("feedback").textContent = "إجابة صحيحة! حصلت على ١٠ جواهر 💎";
+  } else if (method === "timeout") {
+    $("feedback").textContent = "انتهى الوقت! الإجابة الصحيحة موضحة بالأخضر.";
+  } else {
+    $("feedback").textContent = "إجابة خاطئة! الإجابة الصحيحة موضحة بالأخضر.";
+  }
+
+  state.results.push({
+    questionIndex: state.index,
+    selectedIndex,
+    isCorrect,
+    method
+  });
+
+  state.questionLocked = true;
+  save();
+  updateStats();
+
+  $("nextBtn").disabled = false;
+  $("caBtn").disabled = true;
+}
+
+$("nextBtn").addEventListener("click", () => {
+  if (!state) return;
+
+  state.index++;
+  state.questionStartedAt = 0;
+  state.deadline = 0;
+  state.questionLocked = false;
+  save();
+
+  renderQuestion();
 });
+
+/* ==========================
+   مساعدة CA (تجاهل الإجابات الخاطئة)
+   ========================== */
+
+$("caBtn").addEventListener("click", () => {
+  if (locked || !state || state.gems < 100) return;
+
+  state.gems -= 100;
+  updateStats();
+
+  const q = QUESTIONS[state.index];
+  const buttons = document.querySelectorAll(".answer");
+
+  buttons.forEach((btn, idx) => {
+    if (idx !== q.correct) {
+      btn.style.opacity = "0.3";
+      btn.style.pointerEvents = "none";
+    }
+  });
+
+  $("caBtn").disabled = true;
+  $("feedback").textContent = "تم تفعيل المساعدة CA! تم إخفاء الإجابات الخاطئة.";
+  save();
+});
+
+/* ==========================
+   شاشة النهاية
+   ========================== */
+
+function finishGame() {
+  state.complete = true;
+  save();
+
+  $("resultName").textContent = `المتسابق: ${state.name}`;
+  $("finalGems").textContent = `${state.gems} GEMS`;
+  $("resultMessage").textContent = `أحسنت يا ${state.name}! تم إكمال جميع الأسئلة الـ ٢٠ بنجاح.`;
+
+  showScreen("result");
+}
+
+$("restartBtn").addEventListener("click", () => {
+  localStorage.removeItem(SAVE_KEY);
+  location.reload();
+});
+
+$("homeBtn").addEventListener("click", () => {
+  localStorage.removeItem(SAVE_KEY);
+  location.reload();
+});
+
+/* ==========================
+   بدء التطبيق
+   ========================== */
+
+const savedState = load();
+
+if (savedState && !savedState.complete) {
+  state = savedState;
+  showScreen("game");
+  renderQuestion();
+} else if (savedState && savedState.complete) {
+  state = savedState;
+  finishGame();
+} else {
+  showScreen("login");
+}
 </script>
 </body>
 </html>
