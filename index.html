@@ -568,7 +568,7 @@ footer .copyright {
 
     <div class="notice">
       الإجابة الصحيحة = ١٠ جواهر 💎<br>
-      المساعدة CA = خصم ٥٠٠ جوهرة<br>
+      المساعدة CA = خصم 100 جوهرة<br>
       أسرع قبل انتهاء الوقت!
     </div>
   </section>
@@ -968,4 +968,251 @@ function submitAnswer(selectedIndex, method) {
   clearInterval(timerInterval);
 
   const q = QUESTIONS[state.index];
-  const correct = selected
+  const correct = selectedIndex === q.correct;
+
+  if (correct && method === "answer") {
+    state.gems += 10;
+  }
+
+  const buttons = [
+    ...document.querySelectorAll(".answer")
+  ];
+
+  buttons.forEach((button, index) => {
+    button.disabled = true;
+
+    if (index === q.correct) {
+      button.classList.add("correct");
+    }
+
+    if (index === selectedIndex && !correct) {
+      button.classList.add("wrong");
+    }
+  });
+
+  if (method === "ca") {
+    $("feedback").textContent =
+      `تم استخدام المساعدة! الإجابة الصحيحة: ${q.a[q.correct]}`;
+  } else if (method === "timeout") {
+    $("feedback").textContent =
+      `انتهى الوقت! الإجابة الصحيحة: ${q.a[q.correct]}`;
+  } else if (correct) {
+    $("feedback").textContent = "إجابة صحيحة! +١٠ جواهر 💎";
+  } else {
+    $("feedback").textContent =
+      `إجابة غير صحيحة! الإجابة الصحيحة: ${q.a[q.correct]}`;
+  }
+
+  state.results[state.index] = {
+    selectedIndex,
+    correct: method === "answer" && correct,
+    method
+  };
+
+  state.questionLocked = true;
+
+  save();
+  updateStats();
+
+  $("nextBtn").disabled = false;
+  $("caBtn").disabled = true;
+}
+
+/* ==========================
+   زر المساعدة CA
+   ========================== */
+
+$("caBtn").addEventListener("click", () => {
+  if (!state || locked || state.gems < 100) return;
+
+  if (Date.now() >= state.deadline) {
+    submitAnswer(-1, "timeout");
+    return;
+  }
+
+  // الخصم يحدث مرة واحدة فقط عند استخدام المساعدة.
+  state.gems -= 100;
+
+  submitAnswer(QUESTIONS[state.index].correct, "ca");
+});
+
+/* ==========================
+   الانتقال للسؤال التالي
+   ========================== */
+
+$("nextBtn").addEventListener("click", () => {
+  if (!locked || !state) return;
+
+  state.index++;
+  state.questionLocked = false;
+  state.questionStartedAt = 0;
+  state.deadline = 0;
+
+  save();
+
+  if (state.index >= QUESTIONS.length) {
+    finishGame();
+  } else {
+    renderQuestion();
+  }
+});
+
+/* ==========================
+   إنهاء المسابقة
+   ========================== */
+
+function finishGame() {
+  clearInterval(timerInterval);
+
+  state.complete = true;
+  state.index = QUESTIONS.length;
+
+  save();
+  showResult();
+}
+
+function showResult() {
+  clearInterval(timerInterval);
+
+  showScreen("result");
+
+  const correctCount = state.results.filter(
+    result => result && result.correct
+  ).length;
+
+  $("resultName").textContent = `المتسابق: ${state.name}`;
+
+  $("finalGems").textContent =
+    `${state.gems.toLocaleString("en-US")} GEMS`;
+
+  $("resultMessage").textContent =
+    `عدد الإجابات الصحيحة: ${correctCount} من 20. أحسنت، وشكرًا لمشاركتك!`;
+}
+
+/* ==========================
+   إعادة المسابقة
+   ========================== */
+
+$("restartBtn").addEventListener("click", () => {
+  state = {
+    name: state.name,
+    index: 0,
+    gems: 0,
+    results: [],
+    complete: false,
+    questionStartedAt: 0,
+    deadline: 0,
+    questionLocked: false
+  };
+
+  save();
+  showScreen("game");
+  renderQuestion();
+});
+
+$("homeBtn").addEventListener("click", () => {
+  clearInterval(timerInterval);
+
+  state = null;
+  showScreen("login");
+});
+
+/* ==========================
+   استعادة التقدم بعد التحديث
+   ========================== */
+
+function resumeGame(saved) {
+  state = saved;
+
+  $("playerName").value = state.name;
+
+  if (state.complete || state.index >= QUESTIONS.length) {
+    showResult();
+    return;
+  }
+
+  showScreen("game");
+
+  if (state.questionLocked) {
+    locked = true;
+
+    const q = QUESTIONS[state.index];
+
+    $("category").textContent = q.category;
+    $("questionNumber").textContent =
+      `السؤال ${state.index + 1} من ${QUESTIONS.length}`;
+
+    $("progress").style.width =
+      `${(state.index / QUESTIONS.length) * 100}%`;
+
+    $("question").textContent = q.q;
+    $("answers").replaceChildren();
+
+    q.a.forEach((answer, index) => {
+      const button = document.createElement("button");
+
+      button.type = "button";
+      button.className = "answer";
+      button.textContent =
+        `${["أ", "ب", "ج", "د"][index]}) ${answer}`;
+      button.disabled = true;
+
+      const result = state.results[state.index];
+
+      if (index === q.correct) {
+        button.classList.add("correct");
+      }
+
+      if (
+        result &&
+        result.selectedIndex === index &&
+        !result.correct &&
+        result.method !== "ca" &&
+        result.method !== "timeout"
+      ) {
+        button.classList.add("wrong");
+      }
+
+      $("answers").appendChild(button);
+    });
+
+    $("timer").textContent = "0";
+    $("timer").classList.remove("danger");
+
+    const result = state.results[state.index];
+
+    if (result && result.method === "ca") {
+      $("feedback").textContent =
+        `تم استخدام المساعدة! الإجابة الصحيحة: ${q.a[q.correct]}`;
+    } else if (result && result.method === "timeout") {
+      $("feedback").textContent =
+        `انتهى الوقت! الإجابة الصحيحة: ${q.a[q.correct]}`;
+    } else if (result && result.correct) {
+      $("feedback").textContent = "إجابة صحيحة! +١٠ جواهر 💎";
+    } else {
+      $("feedback").textContent =
+        `إجابة غير صحيحة! الإجابة الصحيحة: ${q.a[q.correct]}`;
+    }
+
+    $("nextBtn").disabled = false;
+    $("caBtn").disabled = true;
+
+    updateStats();
+    return;
+  }
+
+  renderQuestion();
+}
+
+window.addEventListener("pagehide", save);
+
+let existing = load();
+
+if (existing) {
+  resumeGame(existing);
+} else {
+  showScreen("login");
+}
+</script>
+</body>
+</html>
